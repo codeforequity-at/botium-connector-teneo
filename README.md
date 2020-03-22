@@ -88,11 +88,14 @@ There is a sample available in [samples](./samples) with Botium Bindings.
 
 ## Additional Input Parameters
 
-
+    #begin
+    UPDATE_CUSTOM TENEO_PARAM|usertimezone|CEST
 
 ## Assert Output Parameters
 
-
+    #bot
+    JSON_PATH $.input.parameters.usertimezone|CEST
+    JSON_PATH $.output.parameters.displayWidget.time
 
 ## Supported Capabilities
 
