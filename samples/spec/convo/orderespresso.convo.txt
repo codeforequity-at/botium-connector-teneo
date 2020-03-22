@@ -1,0 +1,25 @@
+Ordering a small espresso
+
+#me
+I want to order a coffee
+
+#bot
+Ok, what coffee would you like?
+
+#me
+Espresso
+
+#bot
+What size would you like?
+
+#me
+Small
+
+#bot
+Ok, what name shall I note for the order?
+
+#me
+Anna
+
+#bot
+Thanks for your order, Anna. Your small espresso will be ready for pickup in 5 minutes.

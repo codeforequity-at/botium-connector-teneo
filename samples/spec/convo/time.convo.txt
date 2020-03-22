@@ -1,0 +1,11 @@
+time
+
+#begin
+UPDATE_CUSTOM TENEO_PARAM|usertimezone|CEST
+
+#me
+What time is it ?
+
+#bot
+My watch says it's *
+JSON_PATH $.input.parameters.usertimezone|CEST

@@ -1,0 +1,13 @@
+Ordering a large flat white
+
+#me
+I want to order a large flat white
+
+#bot
+Ok, what name shall I note for the order?
+
+#me
+Jack
+
+#bot
+Thanks for your order, Jack. Your large flat white will be ready for pickup in 5 minutes.

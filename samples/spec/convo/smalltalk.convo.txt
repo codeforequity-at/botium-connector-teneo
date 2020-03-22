@@ -1,0 +1,25 @@
+Smalltalk
+
+#me
+Hello
+
+#bot
+Hello. It's good to see you!
+
+#me
+How are you?
+
+#bot
+Thanks for asking. I'm having a great time.
+
+#me
+My name is Max
+
+#bot
+It's a pleasure, Max!
+
+#me
+What is my name?
+
+#bot
+Your name is Max! I hope you won't forget me either.

@@ -1,0 +1,38 @@
+{
+  "name": "botium-connector-teneo",
+  "version": "0.0.2",
+  "description": "Botium Connector for Teneo",
+  "main": "dist/botium-connector-teneo-cjs.js",
+  "module": "dist/botium-connector-teneo-es.js",
+  "scripts": {
+    "build": "npm run eslint && rollup -c",
+    "eslint": "eslint index.js src",
+    "eslint-fix": "eslint --fix index.js src"
+  },
+  "author": "Botium GmbH",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "rollup": "^2.1.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.9.2",
+    "debug": "^4.1.1"
+  },
+  "peerDependencies": {
+    "botium-core": ">= 1.7.3"
+  }
+}
