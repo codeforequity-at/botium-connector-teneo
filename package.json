@@ -1,6 +1,6 @@
 {
   "name": "botium-connector-teneo",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Botium Connector for Teneo",
   "main": "dist/botium-connector-teneo-cjs.js",
   "module": "dist/botium-connector-teneo-es.js",
@@ -30,7 +30,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.9.2",
-    "debug": "^4.1.1"
+    "debug": "^4.1.1",
+    "lodash": "^4.17.15"
   },
   "peerDependencies": {
     "botium-core": ">= 1.7.3"

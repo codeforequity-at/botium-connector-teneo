@@ -3,7 +3,11 @@
     "Capabilities": {
       "PROJECTNAME": "Botium Project Teneo",
       "CONTAINERMODE": "teneo",
-      "TENEO_URL": "https://smaland-9c7dea.bots.teneo.ai/longberry_baristas_0x383bjp5a8e6tscbjd9x03tvb/"
+      "TENEO_URL": "https://smaland-9c7dea.bots.teneo.ai/longberry_baristas_0x383bjp5a8e6tscbjd9x03tvb/",
+      "TENEO_STATIC_PARAMS": {
+        "staticparam1": "staticvalue1",
+        "staticparam2": "staticvalue2"
+      }
     }               
   }
 }

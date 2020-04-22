@@ -7,7 +7,7 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 
 
-This is a [Botium](https://github.com/codeforequity-at/botium-core) connector for testing your [Teneo](https://www.artificial-solutions.com/teneo) chatbot.
+This is a [Botium](https://www.botium.ai) connector for testing your [Teneo](https://www.artificial-solutions.com/teneo) chatbot.
 
 __Did you read the [Botium in a Nutshell](https://medium.com/@floriantreml/botium-in-a-nutshell-part-1-overview-f8d0ceaf8fb4) articles? Be warned, without prior knowledge of Botium you won't be able to properly use this library!__
 
@@ -103,3 +103,11 @@ Set the capability __CONTAINERMODE__ to __teneo__ to activate this connector.
 
 ### TENEO_URL
 Teneo chatbot endpoint url
+
+### TENEO_STATIC_PARAMS
+Static parameters to add as endpoint url query parameters
+
+    "TENEO_STATIC_PARAMS": {
+      "staticparam1": "staticvalue1",
+      "staticparam2": "staticvalue2"
+    }

@@ -1,11 +1,13 @@
 const util = require('util')
+const _ = require('lodash')
 const debug = require('debug')('botium-connector-teneo')
 
 const SimpleRestContainer = require('botium-core/src/containers/plugins/SimpleRestContainer')
 const CoreCapabilities = require('botium-core/src/Capabilities')
 
 const Capabilities = {
-  TENEO_URL: 'TENEO_URL'
+  TENEO_URL: 'TENEO_URL',
+  TENEO_STATIC_PARAMS: 'TENEO_STATIC_PARAMS'
 }
 
 const Defaults = {
@@ -25,6 +27,10 @@ class BotiumConnectorTeneo {
     this.caps = Object.assign({}, Defaults, this.caps)
 
     if (!this.caps[Capabilities.TENEO_URL]) throw new Error('TENEO_URL capability required')
+    if (this.caps[Capabilities.TENEO_STATIC_PARAMS] && !_.isObject(this.caps[Capabilities.TENEO_STATIC_PARAMS])) {
+      throw new Error('TENEO_STATIC_PARAMS capability required as dictionary')
+    }
+
     if (!this.delegateContainer) {
       let baseUrl = this.caps[Capabilities.TENEO_URL]
       if (!baseUrl.endsWith('/')) {
@@ -38,8 +44,19 @@ class BotiumConnectorTeneo {
           Cookie: 'JSESSIONID={{context.sessionId}}'
         },
         [CoreCapabilities.SIMPLEREST_REQUEST_HOOK]: ({ requestOptions, msg, context }) => {
-          if (msg.TENEO_PARAM && Object.keys(msg.TENEO_PARAM).length > 0) {
-            const appendToUri = Object.keys(msg.TENEO_PARAM).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(msg.TENEO_PARAM[key])}`).join('&')
+          const staticParams = {}
+          if (this.caps[Capabilities.TENEO_STATIC_PARAMS]) {
+            for (const [key, value] of Object.entries(this.caps[Capabilities.TENEO_STATIC_PARAMS])) {
+              staticParams[key] = `${value}`
+            }
+          }
+          if (msg.TENEO_PARAM && _.isObject(msg.TENEO_PARAM)) {
+            for (const [key, value] of Object.entries(msg.TENEO_PARAM)) {
+              staticParams[key] = `${value}`
+            }
+          }
+          if (Object.keys(staticParams).length > 0) {
+            const appendToUri = Object.keys(staticParams).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(staticParams[key])}`).join('&')
             if (requestOptions.uri.indexOf('?') > 0) {
               requestOptions.uri = `${requestOptions.uri}&${appendToUri}`
             } else {

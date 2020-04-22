@@ -13,6 +13,13 @@ module.exports = {
         description: 'Teneo chatbot endpoint url',
         type: 'url',
         required: true
+      },
+      {
+        name: 'TENEO_STATIC_PARAMS',
+        label: 'Additional Static Parameters',
+        description: 'Static parameters to add as endpoint url query parameters',
+        type: 'dictionary',
+        required: false
       }
     ]
   }
