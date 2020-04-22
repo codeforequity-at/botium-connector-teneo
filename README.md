@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/botium-connector-teneo.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/botium-connector-teneo/)
 
-[![Codeship Status for codeforequity-at/botium-connector-teneo](https://app.codeship.com/projects/2bb81a70-c59f-0137-b318-6afa87cdc716/status?branch=master)](https://app.codeship.com/projects/366879)
+[![Codeship Status for codeforequity-at/botium-connector-teneo](https://app.codeship.com/projects/815af8a0-66b2-0138-276a-365ec6c7a2d7/status?branch=master)](https://app.codeship.com/projects/393729)
 [![npm version](https://badge.fury.io/js/botium-connector-teneo.svg)](https://badge.fury.io/js/botium-connector-teneo)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 
