@@ -1,10 +1,15 @@
+const fs = require('fs')
+const path = require('path')
 const BotiumConnectorTeneo = require('./src/connector')
+
+const logo = fs.readFileSync(path.join(__dirname, 'logo.png')).toString('base64')
 
 module.exports = {
   PluginVersion: 1,
   PluginClass: BotiumConnectorTeneo,
   PluginDesc: {
     name: 'Botium Connector for Teneo',
+    avatar: logo,
     provider: 'Teneo',
     capabilities: [
       {

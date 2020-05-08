@@ -1,11 +1,11 @@
 {
   "name": "botium-connector-teneo",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Botium Connector for Teneo",
   "main": "dist/botium-connector-teneo-cjs.js",
   "module": "dist/botium-connector-teneo-es.js",
   "scripts": {
-    "build": "npm run eslint && rollup -c",
+    "build": "npm run eslint && rollup -c && cp logo.png dist",
     "eslint": "eslint index.js src",
     "eslint-fix": "eslint --fix index.js src"
   },
