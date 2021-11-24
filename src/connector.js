@@ -7,10 +7,12 @@ const CoreCapabilities = require('botium-core/src/Capabilities')
 
 const Capabilities = {
   TENEO_URL: 'TENEO_URL',
+  TENEO_VERSION: 'TENEO_VERSION',
   TENEO_STATIC_PARAMS: 'TENEO_STATIC_PARAMS'
 }
 
 const Defaults = {
+  TENEO_VERSION: 'V5'
 }
 
 class BotiumConnectorTeneo {
@@ -37,14 +39,19 @@ class BotiumConnectorTeneo {
         baseUrl = baseUrl + '/'
       }
 
+      const isV5 = (this.caps[Capabilities.TENEO_VERSION] === 'V5')
+
       this.delegateCaps = {
-        [CoreCapabilities.SIMPLEREST_URL]: `${baseUrl}?viewtype=tieapi&userinput={{msg.messageText}}`,
-        [CoreCapabilities.SIMPLEREST_METHOD]: 'GET',
+        [CoreCapabilities.SIMPLEREST_URL]: baseUrl,
+        [CoreCapabilities.SIMPLEREST_METHOD]: isV5 ? 'GET' : 'POST',
         [CoreCapabilities.SIMPLEREST_HEADERS_TEMPLATE]: {
           Cookie: 'JSESSIONID={{context.sessionId}}'
         },
         [CoreCapabilities.SIMPLEREST_REQUEST_HOOK]: ({ requestOptions, msg, context }) => {
-          const staticParams = {}
+          const staticParams = {
+            viewtype: 'tieapi',
+            userinput: msg.messageText
+          }
           if (this.caps[Capabilities.TENEO_STATIC_PARAMS]) {
             for (const [key, value] of Object.entries(this.caps[Capabilities.TENEO_STATIC_PARAMS])) {
               staticParams[key] = `${value}`
@@ -55,13 +62,15 @@ class BotiumConnectorTeneo {
               staticParams[key] = `${value}`
             }
           }
-          if (Object.keys(staticParams).length > 0) {
+          if (isV5) {
             const appendToUri = Object.keys(staticParams).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(staticParams[key])}`).join('&')
             if (requestOptions.uri.indexOf('?') > 0) {
               requestOptions.uri = `${requestOptions.uri}&${appendToUri}`
             } else {
               requestOptions.uri = `${requestOptions.uri}?${appendToUri}`
             }
+          } else {
+            requestOptions.form = { ...(requestOptions.form || {}), ...staticParams }
           }
         },
         [CoreCapabilities.SIMPLEREST_CONTEXT_JSONPATH]: '$',
