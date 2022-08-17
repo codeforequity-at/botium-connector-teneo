@@ -1,13 +1,14 @@
 {
   "name": "botium-connector-teneo",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "Botium Connector for Teneo",
   "main": "dist/botium-connector-teneo-cjs.js",
   "module": "dist/botium-connector-teneo-es.js",
   "scripts": {
     "build": "npm run eslint && rollup -c && cp logo.png dist",
     "eslint": "eslint index.js src",
-    "eslint-fix": "eslint --fix index.js src"
+    "eslint-fix": "eslint --fix index.js src",
+    "update-dependencies": "npm-check-updates -u --timeout 120000"
   },
   "author": "Botium GmbH",
   "license": "MIT",
@@ -16,25 +17,26 @@
   },
   "homepage": "https://www.botium.ai",
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/node": "^7.16.0",
-    "@babel/plugin-transform-runtime": "^7.16.4",
-    "@babel/preset-env": "^7.16.4",
-    "eslint": "^8.3.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.25.3",
+    "@babel/core": "^7.18.10",
+    "@babel/node": "^7.18.10",
+    "@babel/plugin-transform-runtime": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "eslint": "^8.22.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.1",
+    "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-standard": "^5.0.0",
-    "rollup": "^2.60.1",
+    "npm-check-updates": "^16.0.5",
+    "rollup": "^2.78.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
-    "debug": "^4.3.2",
+    "@babel/runtime": "^7.18.9",
+    "debug": "^4.3.4",
     "lodash": "^4.17.21"
   },
   "peerDependencies": {

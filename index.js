@@ -26,7 +26,8 @@ module.exports = {
         required: true,
         choices: [
           { key: 'V5', name: 'Teneo V5' },
-          { key: 'V6', name: 'Teneo V6' }
+          { key: 'V6', name: 'Teneo V6' },
+          { key: 'V7', name: 'Teneo V7' }
         ]
       },
       {

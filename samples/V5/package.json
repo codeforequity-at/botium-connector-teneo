@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "botium-bindings": "latest",
-    "botium-connector-teneo": "../",
+    "botium-connector-teneo": "../../",
     "mocha": "latest"
   }
 }
