@@ -47,8 +47,9 @@ class BotiumConnectorTeneo {
         [CoreCapabilities.SIMPLEREST_METHOD]: isV5 ? 'GET' : 'POST',
         [CoreCapabilities.SIMPLEREST_COOKIE_REPLICATION]: true,
         [CoreCapabilities.SIMPLEREST_HEADERS_TEMPLATE]: `{
-          "Cookie": "JSESSIONID={{context.sessionId}}",
-          {{#response.headers.x-gateway-session}}"X-Teneo-Session": "JSESSIONID={{context.sessionId}}; {{response.headers.x-gateway-session}}"{{/response.headers.x-gateway-session}}
+          "X-Botium": "true"
+          {{#context.sessionId}}, "Cookie": "JSESSIONID={{context.sessionId}}"{{/context.sessionId}}
+          {{#response.headers.x-gateway-session}}, "X-Teneo-Session": "JSESSIONID={{context.sessionId}}; {{response.headers.x-gateway-session}}"{{/response.headers.x-gateway-session}}
         }`,
         [CoreCapabilities.SIMPLEREST_REQUEST_HOOK]: ({ requestOptions, msg, context }) => {
           const staticParams = {
@@ -92,8 +93,9 @@ class BotiumConnectorTeneo {
         [CoreCapabilities.SIMPLEREST_STOP_URL]: isV7 ? `${baseUrl}endsession{{#context.sessionId}};jsessionid={{context.sessionId}}{{/context.sessionId}}` : `${baseUrl}endsession`,
         [CoreCapabilities.SIMPLEREST_STOP_VERB]: 'GET',
         [CoreCapabilities.SIMPLEREST_STOP_HEADERS]: `{
-          "Cookie": "JSESSIONID={{context.sessionId}}",
-          {{#response.headers.x-gateway-session}}"X-Teneo-Session": "JSESSIONID={{context.sessionId}}; {{response.headers.x-gateway-session}}"{{/response.headers.x-gateway-session}}
+          "X-Botium": "true"
+          {{#context.sessionId}}, "Cookie": "JSESSIONID={{context.sessionId}}"{{/context.sessionId}}
+          {{#response.headers.x-gateway-session}}, "X-Teneo-Session": "JSESSIONID={{context.sessionId}}; {{response.headers.x-gateway-session}}"{{/response.headers.x-gateway-session}}
         }`
       }
       for (const capKey of Object.keys(this.caps).filter(c => c.startsWith('SIMPLEREST'))) {
