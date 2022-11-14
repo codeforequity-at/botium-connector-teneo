@@ -78,7 +78,16 @@ class BotiumConnectorTeneo {
           }
         },
         [CoreCapabilities.SIMPLEREST_CONTEXT_JSONPATH]: '$',
+        [CoreCapabilities.SIMPLEREST_PARSER_HOOK]: ({ body, changeBody }) => {
+          for (const key of Object.keys(body.output.parameters)) {
+            try {
+              body.output.parameters[key] = JSON.parse(body.output.parameters[key])
+            } catch (err) {}
+          }
+          changeBody(body)
+        },
         [CoreCapabilities.SIMPLEREST_RESPONSE_JSONPATH]: ['$.output.text'],
+        [CoreCapabilities.SIMPLEREST_BUTTONS_JSONPATH]: "$.output.parameters.teneowebclient.button_items[*].postback",
         [CoreCapabilities.SIMPLEREST_RESPONSE_HOOK]: ({ botMsg }) => {
           if (botMsg.sourceData.output && botMsg.sourceData.output.parameters) {
             for (const key of Object.keys(botMsg.sourceData.output.parameters)) {
@@ -90,6 +99,7 @@ class BotiumConnectorTeneo {
           }
           debug(`Response Body: ${JSON.stringify(botMsg.sourceData)}`)
         },
+
         [CoreCapabilities.SIMPLEREST_STOP_URL]: isV7 ? `${baseUrl}endsession{{#context.sessionId}};jsessionid={{context.sessionId}}{{/context.sessionId}}` : `${baseUrl}endsession`,
         [CoreCapabilities.SIMPLEREST_STOP_VERB]: 'GET',
         [CoreCapabilities.SIMPLEREST_STOP_HEADERS]: `{
