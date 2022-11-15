@@ -87,7 +87,7 @@ class BotiumConnectorTeneo {
           changeBody(body)
         },
         [CoreCapabilities.SIMPLEREST_RESPONSE_JSONPATH]: ['$.output.text'],
-        [CoreCapabilities.SIMPLEREST_BUTTONS_JSONPATH]: "$.output.parameters.teneowebclient.button_items[*].postback",
+        [CoreCapabilities.SIMPLEREST_BUTTONS_JSONPATH]: '$.output.parameters.teneowebclient.button_items[*].postback',
         [CoreCapabilities.SIMPLEREST_RESPONSE_HOOK]: ({ botMsg }) => {
           if (botMsg.sourceData.output && botMsg.sourceData.output.parameters) {
             for (const key of Object.keys(botMsg.sourceData.output.parameters)) {
