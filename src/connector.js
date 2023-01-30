@@ -39,17 +39,13 @@ class BotiumConnectorTeneo {
         baseUrl = baseUrl + '/'
       }
 
-      const isV5 = (this.caps[Capabilities.TENEO_VERSION] === 'V5')
-      const isV7 = (this.caps[Capabilities.TENEO_VERSION] === 'V7')
-
       this.delegateCaps = {
-        [CoreCapabilities.SIMPLEREST_URL]: isV7 ? `${baseUrl}{{#context.sessionId}};jsessionid={{context.sessionId}}{{/context.sessionId}}` : baseUrl,
-        [CoreCapabilities.SIMPLEREST_METHOD]: isV5 ? 'GET' : 'POST',
+        [CoreCapabilities.SIMPLEREST_URL]: `${baseUrl}{{#context.sessionId}};jsessionid={{context.sessionId}}{{/context.sessionId}}`,
+        [CoreCapabilities.SIMPLEREST_METHOD]: 'POST',
         [CoreCapabilities.SIMPLEREST_COOKIE_REPLICATION]: true,
         [CoreCapabilities.SIMPLEREST_HEADERS_TEMPLATE]: `{
           "X-Botium": "true"
           {{#context.sessionId}}, "Cookie": "JSESSIONID={{context.sessionId}}"{{/context.sessionId}}
-          {{#response.headers.x-gateway-session}}, "X-Teneo-Session": "JSESSIONID={{context.sessionId}}; {{response.headers.x-gateway-session}}"{{/response.headers.x-gateway-session}}
         }`,
         [CoreCapabilities.SIMPLEREST_REQUEST_HOOK]: ({ requestOptions, msg, context }) => {
           const staticParams = {
@@ -66,26 +62,9 @@ class BotiumConnectorTeneo {
               staticParams[key] = `${value}`
             }
           }
-          if (isV5) {
-            const appendToUri = Object.keys(staticParams).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(staticParams[key])}`).join('&')
-            if (requestOptions.uri.indexOf('?') > 0) {
-              requestOptions.uri = `${requestOptions.uri}&${appendToUri}`
-            } else {
-              requestOptions.uri = `${requestOptions.uri}?${appendToUri}`
-            }
-          } else {
-            requestOptions.form = { ...(requestOptions.form || {}), ...staticParams }
-          }
+          requestOptions.form = { ...(requestOptions.form || {}), ...staticParams }
         },
         [CoreCapabilities.SIMPLEREST_CONTEXT_JSONPATH]: '$',
-        [CoreCapabilities.SIMPLEREST_PARSER_HOOK]: ({ body, changeBody }) => {
-          for (const key of Object.keys(body.output.parameters)) {
-            try {
-              body.output.parameters[key] = JSON.parse(body.output.parameters[key])
-            } catch (err) {}
-          }
-          changeBody(body)
-        },
         [CoreCapabilities.SIMPLEREST_RESPONSE_JSONPATH]: ['$.output.text'],
         [CoreCapabilities.SIMPLEREST_BUTTONS_JSONPATH]: '$.output.parameters.teneowebclient.button_items[*].postback',
         [CoreCapabilities.SIMPLEREST_PARSER_HOOK]: ({ body, changeBody }) => {
@@ -99,12 +78,11 @@ class BotiumConnectorTeneo {
           debug(`Parsed Response Body: ${JSON.stringify(body, null, 2)}`)
           changeBody(body)
         },
-        [CoreCapabilities.SIMPLEREST_STOP_URL]: isV7 ? `${baseUrl}endsession{{#context.sessionId}};jsessionid={{context.sessionId}}{{/context.sessionId}}` : `${baseUrl}endsession`,
+        [CoreCapabilities.SIMPLEREST_STOP_URL]: `${baseUrl}endsession{{#context.sessionId}};jsessionid={{context.sessionId}}{{/context.sessionId}}`,
         [CoreCapabilities.SIMPLEREST_STOP_VERB]: 'GET',
         [CoreCapabilities.SIMPLEREST_STOP_HEADERS]: `{
           "X-Botium": "true"
           {{#context.sessionId}}, "Cookie": "JSESSIONID={{context.sessionId}}"{{/context.sessionId}}
-          {{#response.headers.x-gateway-session}}, "X-Teneo-Session": "JSESSIONID={{context.sessionId}}; {{response.headers.x-gateway-session}}"{{/response.headers.x-gateway-session}}
         }`
       }
       for (const capKey of Object.keys(this.caps).filter(c => c.startsWith('SIMPLEREST'))) {

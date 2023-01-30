@@ -1,0 +1,31 @@
+sessiontest
+
+#me
+DT TEST
+
+#bot
+Are you testing the new Connector version?
+
+#me
+yes
+
+#bot
+Then you will need to keep your session, right?
+
+#me
+yes
+
+#bot
+Session is fine - are you fine with that info?
+
+#me
+yes
+
+#bot
+Then session has been completed successfully. Ready for release
+
+#me
+yes
+
+#bot
+OK.

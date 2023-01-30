@@ -20,17 +20,6 @@ module.exports = {
         required: true
       },
       {
-        name: 'TENEO_VERSION',
-        label: 'Teneo Version',
-        type: 'choice',
-        required: true,
-        choices: [
-          { key: 'V5', name: 'Teneo V5' },
-          { key: 'V6', name: 'Teneo V6' },
-          { key: 'V7', name: 'Teneo V7' }
-        ]
-      },
-      {
         name: 'TENEO_STATIC_PARAMS',
         label: 'Additional Static Parameters',
         description: 'Static parameters to add as endpoint url query parameters',
