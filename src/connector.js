@@ -66,7 +66,9 @@ class BotiumConnectorTeneo {
         },
         [CoreCapabilities.SIMPLEREST_CONTEXT_JSONPATH]: '$',
         [CoreCapabilities.SIMPLEREST_RESPONSE_JSONPATH]: ['$.output.text'],
-        [CoreCapabilities.SIMPLEREST_BUTTONS_JSONPATH]: '$.output.parameters.teneowebclient.button_items[*].postback',
+        [CoreCapabilities.SIMPLEREST_BUTTONS_JSONPATH]: '$.output.parameters.teneowebclient.button_items[*]',
+        [CoreCapabilities.SIMPLEREST_BUTTONS_TEXT_SUBJSONPATH]: '$.title',
+        [CoreCapabilities.SIMPLEREST_BUTTONS_PAYLOAD_SUBJSONPATH]: '$.postback',
         [CoreCapabilities.SIMPLEREST_PARSER_HOOK]: ({ body, changeBody }) => {
           if (body && body.output && body.output.parameters) {
             for (const key of Object.keys(body.output.parameters)) {
