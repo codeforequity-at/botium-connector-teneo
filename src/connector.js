@@ -7,12 +7,10 @@ const CoreCapabilities = require('botium-core/src/Capabilities')
 
 const Capabilities = {
   TENEO_URL: 'TENEO_URL',
-  TENEO_VERSION: 'TENEO_VERSION',
   TENEO_STATIC_PARAMS: 'TENEO_STATIC_PARAMS'
 }
 
 const Defaults = {
-  TENEO_VERSION: 'V5'
 }
 
 class BotiumConnectorTeneo {

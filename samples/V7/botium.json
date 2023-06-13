@@ -3,8 +3,7 @@
     "Capabilities": {
       "PROJECTNAME": "Botium Project Teneo",
       "CONTAINERMODE": "teneo",
-      "TENEO_URL": "https://tsfcdvofr1tq9jnukljd06a6bouk9h8t.as-solutions.teneo.solutions/cs-qa-4/",
-      "TENEO_VERSION": "V7"
+      "TENEO_URL": "https://..."
     }               
   }
 }

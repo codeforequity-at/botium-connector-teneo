@@ -1,11 +1,14 @@
-hello
+test convo
+
+#begin
+UPDATE_CUSTOM TENEO_PARAM|firstName|"Horatio"
+UPDATE_CUSTOM TENEO_PARAM|id|"4897023123"
+UPDATE_CUSTOM TENEO_PARAM|activeSubscriptionId|"123"
+UPDATE_CUSTOM TENEO_PARAM|shippingAddress|'{"firstName":"Smith","middleName":null,"lastName":"Elamin","address1":"lepperton postcentre","address1Street":null,"address1No":null,"address2":null,"address2Comment":"Leave in flat garage","address2Comment2":null,"company":null,"city":"new plymouth","postcode":"12345","phone":"0123123123","isOffice":false}'
+UPDATE_CUSTOM TENEO_PARAM|channel|"webview"
 
 #me
-hello
+hi! The $1 charge placed on my credit card account didn’t drop after my order was shipped via a gift card I received.
 
 #bot
-
-#me
-hello again
-
-#bot
+I do apologize for any confusion in regards to preauthorization charges on your account!
