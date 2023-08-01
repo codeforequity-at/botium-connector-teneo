@@ -85,7 +85,7 @@ class BotiumConnectorTeneo {
           {{#context.sessionId}}, "Cookie": "JSESSIONID={{context.sessionId}}"{{/context.sessionId}}
         }`
       }
-      for (const capKey of Object.keys(this.caps).filter(c => c.startsWith('TENEO_' && Object.keys(Capabilities).indexOf(c) < 0))) {
+      for (const capKey of Object.keys(this.caps).filter(c => c.startsWith('TENEO_') && Object.keys(Capabilities).indexOf(c) < 0)) {
         this.delegateCaps[capKey.replace('TENEO_', 'SIMPLEREST_')] = this.caps[capKey]
       }
       for (const capKey of Object.keys(this.caps).filter(c => c.startsWith('SIMPLEREST'))) {
