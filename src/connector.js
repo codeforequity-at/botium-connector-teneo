@@ -88,8 +88,11 @@ class BotiumConnectorTeneo {
       for (const capKey of Object.keys(this.caps).filter(c => c.startsWith('TENEO_') && Object.keys(Capabilities).indexOf(c) < 0)) {
         this.delegateCaps[capKey.replace('TENEO_', 'SIMPLEREST_')] = this.caps[capKey]
       }
-      for (const capKey of Object.keys(this.caps).filter(c => c.startsWith('SIMPLEREST'))) {
+      for (const capKey of Object.keys(this.caps).filter(c => c.startsWith('SIMPLEREST_'))) {
         if (!this.delegateCaps[capKey]) this.delegateCaps[capKey] = this.caps[capKey]
+      }
+      for (const capKey of Object.keys(this.caps).filter(c => !c.startsWith('SIMPLEREST_') && !c.startsWith('TENEO_'))) {
+        this.delegateCaps[capKey] = this.caps[capKey]
       }
 
       debug(`Validate delegateCaps ${util.inspect(this.delegateCaps)}`)

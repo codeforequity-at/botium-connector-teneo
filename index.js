@@ -25,6 +25,21 @@ module.exports = {
         description: 'Static parameters to add as endpoint url query parameters',
         type: 'dictionary',
         required: false
+      },
+      {
+        name: 'TENEO_RESPONSE_HOOK',
+        label: 'Response Hook Script',
+        description: 'Javascript file to parse the response from Teneo',
+        type: 'javascript',
+        required: false,
+        advanced: true,
+        sampleHeader: 'Sample Javascript Code',
+        sampleDescription: 'Parameter botMsg.sourceData contains the Teneo response as JSON',
+        sampleBody: `
+module.exports = ({ botMsg }) => {
+  botMsg.messageText = botMsg.sourceData.output.text
+}
+        `.trim()
       }
     ]
   }
