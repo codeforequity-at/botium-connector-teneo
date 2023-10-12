@@ -60,6 +60,11 @@ class BotiumConnectorTeneo {
               staticParams[key] = `${value}`
             }
           }
+          if (msg.forms) {
+            msg.forms.forEach(f => {
+              staticParams[f.name] = `${f.value}`
+            })
+          }
           requestOptions.form = { ...(requestOptions.form || {}), ...staticParams }
         },
         [CoreCapabilities.SIMPLEREST_CONTEXT_JSONPATH]: '$',
